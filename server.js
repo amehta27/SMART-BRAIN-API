@@ -1,12 +1,9 @@
-const express = require('express')
-// const bodyParser = require('body-parser')
+const express = require('express'); // You forgot ";"
+const bodyParser = require('body-parser'); //You forgot ";"
 const app =  express();
-// app.use(express.bodyParser.urlencoded({
-//     extended: true
-//   }));
-app.use(express.json());
-// app.use(express.urlencoded({extended: false}));
 
+app.use(express.json());
+app.use(bodyParser.json()); //You also forgot to add this code;
 
 const database ={
     users : [
@@ -27,11 +24,10 @@ const database ={
             entries : 0,
             joined : new Date()
         }
-
     ]
 }
 
-app.get('/', (req,res)=>{
+app.get('/', ( req, res )=>{
     res.send(database.users)
 })
 
@@ -41,8 +37,6 @@ app.listen(3000, ()=> {
 
 app.post('/signin',(req,res)=>{
     if(req.body.email === database.users[0].email && 
-        
-
         req.body.password === database.users[0].password){
             res.json('success')
         } else {
@@ -53,8 +47,8 @@ app.post('/signin',(req,res)=>{
         // console.log(req.body.password);
         // console.log(database.users[0].email);
   
-    // res.json('Signinig')
-    // console.log('signing')
+        // res.json('Signinig')
+         // console.log('signing')
 })
 
 app.post('/register', (req,res)=>{
